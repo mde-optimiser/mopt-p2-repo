@@ -33,6 +33,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Setup Java for later MVN run
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'adopt'
+      - name: Run Maven to generate the repository
+        run: mvn --batch-mode p2:site
+    
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
